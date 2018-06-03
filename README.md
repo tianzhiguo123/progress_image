@@ -31,16 +31,10 @@ import 'package:progress_image/progress_image.dart';
 ```
 
 ##属性
-* selectedColor 选中的颜色
-* normalColor:  没选中的颜色
+* width 宽度 
+* height:  高度(影响水波纹大小)
 * lineStrokeWidth: 线宽
-* circleStrokeWidth: 选中外圈圆宽
-* smallCircleR: 小圆半径
-* bigCircleR: 大圆半径
-* focusDistance: 选中差值 越大越容易选中
-* successCallback 选择4个以上松手回调,返回值为选中的index相加的字符串
-* failCallback 选择4下以上松手回调
-* selectedCallback 经过任意一个后回调,返回值为选中的index相加的字符串
+* builder: 返回显示的内容
 
 ##Example
 ```
