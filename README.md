@@ -33,7 +33,6 @@ import 'package:progress_image/progress_image.dart';
 ##属性
 * width 宽度 
 * height:  高度(影响水波纹大小)
-* lineStrokeWidth: 线宽
 * builder: 返回显示的内容
 
 ##Example
