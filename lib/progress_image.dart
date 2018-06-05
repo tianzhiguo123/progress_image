@@ -8,12 +8,14 @@ typedef Widget WidgetBuilderWithSize(BuildContext context, Size size);
 class ProgressImage extends StatefulWidget {
   final double width;
   final double height;
+  final int initProgress;
   final WidgetBuilderWithSize builder;
 
   ProgressImage({
     Key key,
     this.width: 70.0,
     this.height: 150.0,
+    this.initProgress: -1,
     @required this.builder,
   }) : super(key: key);
 
@@ -29,12 +31,13 @@ class ProgressImageState extends State<ProgressImage>
   Tween<double> elasticityCircleTween;
   double dataSet = 0.0;
   final random = new Random();
-
-  int progress = 0;
+  // -1 代表刚开始
+  int progress;
 
   @override
   void initState() {
     super.initState();
+    progress = widget.initProgress;
     initSplashTween();
     initElasticityCircleTween();
   }
@@ -49,8 +52,8 @@ class ProgressImageState extends State<ProgressImage>
       });
     dataSet = widget.height * 2;
     tween = new Tween<double>(
-        begin: dataSet.toDouble(),
-        end: this.progress < 100 ? dataSet.toDouble() : 0.0);
+        begin:this.progress == -1 ?0.0: dataSet.toDouble(),
+        end: this.progress == -1 ?0.0:this.progress < 100 ? dataSet.toDouble() : 0.0);
     animation.forward();
   }
 
@@ -78,8 +81,10 @@ class ProgressImageState extends State<ProgressImage>
       if (this.progress == 100 && elasticityCircleAnimation != null) {
 //        elasticityCircleAnimation.dispose();
 //        elasticityCircleAnimation = null;
-        initSplashTween();
+
       }
+      animation.dispose();
+      initSplashTween();
     });
   }
 
@@ -92,7 +97,7 @@ class ProgressImageState extends State<ProgressImage>
 
   @override
   Widget build(BuildContext context) {
-    bool isSufficient = this.progress == 100;
+    bool isSufficient = this.progress == 100 || this.progress == -1;
     Size size = new Size(widget.width, widget.height);
     return new Container(
       width: widget.width,
