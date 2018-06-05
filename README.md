@@ -34,6 +34,7 @@ import 'package:progress_image/progress_image.dart';
 * width 宽度 
 * height:  高度(影响水波纹大小)
 * builder: 返回显示的内容
+* initProgress: 默认进度,-1代表默认不显示阴影遮罩,0代表显示遮罩
 
 ##Example
 ```
